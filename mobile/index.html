@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#060a18" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>BlueFlow — Mic</title>
+    <link rel="stylesheet" href="/mobile/css/mobile.css" />
+</head>
+<body>
+
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">
+            <div class="logo-dot"></div>
+            <h1>BlueFlow</h1>
+        </div>
+    </div>
+
+    <!-- Status -->
+    <div class="status-bar">
+        <div class="status-dot disconnected" id="status-dot"></div>
+        <span id="status-text">Connecting to PC...</span>
+    </div>
+
+    <!-- Mic Button -->
+    <div class="mic-area">
+        <div class="mic-ring">
+            <div id="ring-pulse"></div>
+            <button class="mic-btn" id="mic-btn">
+                <span id="mic-icon">🎙</span>
+            </button>
+        </div>
+        <p class="mic-hint" id="mic-hint">Tap to start speaking</p>
+        <div class="level-meter">
+            <div class="level-fill" id="level-fill"></div>
+        </div>
+    </div>
+
+    <!-- Transcription -->
+    <div class="transcription-area">
+        <div class="transcription-card">
+            <div class="transcription-label">Live Transcription</div>
+            <div class="transcription-content" id="transcription">
+                <p style="color: var(--text-secondary); font-style: italic;">
+                    Your speech will appear here...
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Permission Modal Overlay -->
+    <div class="modal-overlay" id="permission-modal">
+        <div class="modal">
+            <div class="modal-icon">🎙</div>
+            <h2 class="modal-title" id="modal-title">Microphone Permission Required</h2>
+            <p class="modal-desc" id="modal-desc">
+                BlueFlow needs access to your microphone to stream audio to your PC.
+            </p>
+
+            <!-- Step-by-step instructions (shown when permission is denied) -->
+            <div class="modal-steps" id="modal-steps" style="display: none;">
+                <p class="steps-heading">How to enable microphone:</p>
+                <div class="step" id="step-chrome" style="display: none;">
+                    <div class="step-num">1</div>
+                    <div class="step-text">Tap the <strong>lock icon 🔒</strong> or <strong>ⓘ</strong> in the address bar</div>
+                </div>
+                <div class="step" id="step-chrome-2" style="display: none;">
+                    <div class="step-num">2</div>
+                    <div class="step-text">Tap <strong>"Permissions"</strong> or <strong>"Site settings"</strong></div>
+                </div>
+                <div class="step" id="step-chrome-3" style="display: none;">
+                    <div class="step-num">3</div>
+                    <div class="step-text">Set <strong>Microphone</strong> to <strong>"Allow"</strong></div>
+                </div>
+                <div class="step" id="step-chrome-4" style="display: none;">
+                    <div class="step-num">4</div>
+                    <div class="step-text">Come back and tap the <strong>mic button</strong> again</div>
+                </div>
+                <div class="step" id="step-safari" style="display: none;">
+                    <div class="step-num">1</div>
+                    <div class="step-text">Open <strong>Settings → Safari → Microphone</strong> and set to <strong>"Allow"</strong></div>
+                </div>
+                <div class="step" id="step-generic" style="display: none;">
+                    <div class="step-num">ℹ️</div>
+                    <div class="step-text">Open your browser settings → Site permissions → Microphone → set to <strong>Allow</strong> for this site</div>
+                </div>
+                <div class="step" id="step-android-settings" style="display: none;">
+                    <div class="step-num">⚙️</div>
+                    <div class="step-text">Also check: <strong>Android Settings → Apps → [Your Browser] → Permissions → Microphone → Allow</strong></div>
+                </div>
+            </div>
+
+            <!-- Secure context warning -->
+            <div class="modal-warning" id="secure-warning" style="display: none;">
+                <span class="warning-icon">⚠️</span>
+                <span>Microphone requires a <strong>secure connection (HTTPS)</strong>. Make sure you're accessing this page via <strong>https://</strong></span>
+            </div>
+
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-primary" id="modal-allow-btn">Allow Microphone</button>
+                <button class="modal-btn modal-btn-secondary" id="modal-close-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/mobile/js/mobile.js"></script>
+</body>
+</html>

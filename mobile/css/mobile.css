@@ -1,0 +1,488 @@
+/* ========================================
+   BlueFlow Mobile — Styles
+   Theme: #1042af
+   ======================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+    --blue-900: #081c50;
+    --blue-800: #0a2874;
+    --blue-700: #0c3498;
+    --blue-600: #1042af;
+    --blue-500: #1a56cc;
+    --blue-400: #3b73e6;
+    --blue-300: #6b9aef;
+    --blue-200: #a0bef5;
+    --blue-100: #d0defa;
+
+    --bg-primary: #060a18;
+    --bg-card: #0c1225;
+    --bg-card-border: rgba(16, 66, 175, 0.15);
+    --text-primary: #e8edf5;
+    --text-secondary: #7b8baa;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* ---- Header ---- */
+.header {
+    width: 100%;
+    padding: 20px 24px 12px;
+    text-align: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.logo-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--blue-600);
+    box-shadow: 0 0 12px var(--blue-600), 0 0 24px rgba(16, 66, 175, 0.3);
+}
+
+.logo h1 {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, var(--blue-300), var(--blue-600));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ---- Status bar ---- */
+.status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 20px;
+    margin: 8px 0;
+    border-radius: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.status-dot.connected {
+    background: var(--blue-400);
+    box-shadow: 0 0 6px var(--blue-400);
+}
+
+.status-dot.streaming {
+    background: var(--success);
+    box-shadow: 0 0 6px var(--success);
+    animation: blink 1.5s ease-in-out infinite;
+}
+
+.status-dot.error,
+.status-dot.disconnected {
+    background: var(--danger);
+    box-shadow: 0 0 6px var(--danger);
+}
+
+.status-dot.connecting {
+    background: var(--warning);
+    animation: blink 0.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ---- Mic Button Area ---- */
+.mic-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.mic-ring {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#ring-pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 2px solid rgba(16, 66, 175, 0.2);
+    transition: all 0.3s;
+}
+
+#ring-pulse.pulsing {
+    animation: ring-expand 2s ease-out infinite;
+    border-color: var(--blue-600);
+}
+
+@keyframes ring-expand {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        border-color: var(--blue-600);
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+        border-color: var(--blue-300);
+    }
+}
+
+.mic-btn {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-600));
+    box-shadow:
+        0 4px 20px rgba(16, 66, 175, 0.3),
+        0 0 0 4px rgba(16, 66, 175, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+    z-index: 2;
+}
+
+.mic-btn:active {
+    transform: scale(0.95);
+}
+
+.mic-btn.active {
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-400));
+    box-shadow:
+        0 4px 30px rgba(16, 66, 175, 0.5),
+        0 0 0 4px rgba(16, 66, 175, 0.15),
+        0 0 60px rgba(16, 66, 175, 0.15);
+}
+
+.mic-hint {
+    font-size: 14px;
+    color: var(--text-secondary);
+    letter-spacing: 0.5px;
+}
+
+/* ---- Level Meter ---- */
+.level-meter {
+    width: 260px;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--bg-card);
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+.level-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--blue-600), var(--blue-300));
+    transition: width 0.08s ease-out;
+}
+
+/* ---- Transcription ---- */
+.transcription-area {
+    width: 100%;
+    padding: 0 20px 24px;
+    max-height: 30vh;
+}
+
+.transcription-card {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    border-radius: 16px;
+    padding: 16px;
+    max-height: 25vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--blue-800) transparent;
+}
+
+.transcription-card::-webkit-scrollbar {
+    width: 4px;
+}
+.transcription-card::-webkit-scrollbar-thumb {
+    background: var(--blue-800);
+    border-radius: 2px;
+}
+
+.transcription-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.transcription-content {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    min-height: 40px;
+}
+
+.transcription-content p {
+    margin-bottom: 6px;
+}
+
+.transcription-content .partial {
+    color: var(--blue-300);
+    font-style: italic;
+    opacity: 0.75;
+}
+
+/* ---- Warning state for mic button ---- */
+.mic-btn.warning {
+    box-shadow:
+        0 4px 20px rgba(239, 68, 68, 0.2),
+        0 0 0 4px rgba(239, 68, 68, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ======================================
+   Permission Modal Overlay
+   ====================================== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(4, 6, 16, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal {
+    background: var(--bg-card);
+    border: 1px solid var(--bg-card-border);
+    border-radius: 20px;
+    padding: 28px 24px;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    animation: modal-in 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes modal-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.modal-icon {
+    font-size: 48px;
+    margin-bottom: 14px;
+}
+
+.modal-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.modal-desc {
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+}
+
+/* Steps */
+.modal-steps {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.steps-heading {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--blue-400);
+    margin-bottom: 12px;
+}
+
+.step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    background: rgba(16, 66, 175, 0.06);
+    border-radius: 10px;
+    border: 1px solid rgba(16, 66, 175, 0.08);
+}
+
+.step-num {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    border-radius: 50%;
+    background: var(--blue-600);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-text {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-primary);
+}
+
+.step-text strong {
+    color: var(--blue-300);
+}
+
+/* Secure warning */
+.modal-warning {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: rgba(239, 68, 68, 0.08);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    border-radius: 10px;
+    margin-bottom: 18px;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--danger);
+    text-align: left;
+}
+
+.warning-icon {
+    font-size: 20px;
+    min-width: 20px;
+}
+
+/* Modal buttons */
+.modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.modal-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 12px;
+    border: none;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.modal-btn-primary {
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-500));
+    color: white;
+    box-shadow: 0 4px 16px rgba(16, 66, 175, 0.3);
+}
+
+.modal-btn-primary:active {
+    transform: scale(0.97);
+}
+
+.modal-btn-secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--bg-card-border);
+}
+
+.modal-btn-secondary:active {
+    background: rgba(255, 255, 255, 0.03);
+}
+
+/* ---- Utility ---- */
+@media (max-height: 600px) {
+    .mic-btn {
+        width: 110px;
+        height: 110px;
+        font-size: 36px;
+    }
+    .mic-ring {
+        width: 140px;
+        height: 140px;
+    }
+    .modal {
+        padding: 20px 16px;
+    }
+}

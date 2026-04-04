@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BlueFlow — Dashboard</title>
+    <link rel="stylesheet" href="/ui/css/dashboard.css" />
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-dot"></div>
+            <h1>BlueFlow</h1>
+            <span class="version">v1.0</span>
+        </div>
+        <div class="header-badges">
+            <span class="badge" id="mic-badge">
+                <span class="badge-dot" id="mic-badge-dot"></span>
+                Virtual Mic
+            </span>
+            <span class="badge" id="stt-badge">
+                <span class="badge-dot" id="stt-badge-dot"></span>
+                Transcription
+            </span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <!-- Left Column: QR + Device -->
+        <div class="column column-left">
+
+            <!-- QR Code Card -->
+            <div class="card qr-card">
+                <div class="card-header">
+                    <span class="card-icon">📱</span>
+                    <h2>Connect Phone</h2>
+                </div>
+                <div class="qr-wrapper">
+                    <img src="/api/qr" alt="QR Code" id="qr-img" class="qr-img" />
+                </div>
+                <p class="qr-hint">Scan with your phone camera<br/>Both devices must be on same WiFi</p>
+                <div class="phone-url" id="phone-url"></div>
+            </div>
+
+            <!-- Audio Device Card -->
+            <div class="card device-card">
+                <div class="card-header">
+                    <span class="card-icon">🔊</span>
+                    <h2>Audio Device</h2>
+                </div>
+                <select id="device-select" class="device-select">
+                    <option value="">Loading devices...</option>
+                </select>
+                <p class="device-hint" id="device-hint">
+                    Select the VB-Cable device for virtual mic output
+                </p>
+            </div>
+        </div>
+
+        <!-- Right Column: Status + Transcription -->
+        <div class="column column-right">
+
+            <!-- Connection Status Card -->
+            <div class="card status-card">
+                <div class="card-header">
+                    <span class="card-icon">📡</span>
+                    <h2>Connection</h2>
+                </div>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <span class="status-label">Phone</span>
+                        <div class="status-value">
+                            <span class="status-indicator" id="phone-status-dot"></span>
+                            <span id="phone-status-text">Waiting...</span>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Streaming</span>
+                        <div class="status-value">
+                            <span class="status-indicator" id="streaming-dot"></span>
+                            <span id="streaming-text">Idle</span>
+                        </div>
+                    </div>
+                    <div class="status-item">
+                        <span class="status-label">Audio Level</span>
+                        <div class="level-meter">
+                            <div class="level-fill" id="level-fill"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transcription Card -->
+            <div class="card transcription-card">
+                <div class="card-header">
+                    <span class="card-icon">📝</span>
+                    <h2>Live Transcription</h2>
+                    <div class="card-actions">
+                        <button class="btn btn-sm" id="copy-btn" title="Copy all text">📋 Copy</button>
+                        <button class="btn btn-sm btn-danger" id="clear-btn" title="Clear text">🗑 Clear</button>
+                    </div>
+                </div>
+                <div class="transcription-content" id="transcription">
+                    <p class="placeholder">Transcribed text will appear here when your phone is connected and streaming...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="/ui/js/dashboard.js"></script>
+</body>
+</html>
