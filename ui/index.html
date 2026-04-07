@@ -1,23 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BlueFlow — Dashboard</title>
+    <title>BlueFlow Arena</title>
     <link rel="stylesheet" href="/ui/css/dashboard.css" />
 </head>
+
 <body>
 
     <!-- Header -->
     <header class="header">
         <div class="logo">
-            <div class="logo-dot"></div>
-            <h1>BlueFlow</h1>
-            <span class="version">v1.0</span>
+            <img src="/assets/blueflow_logo.png" alt="BlueFlow Logo">
         </div>
         <div class="header-badges">
+            <span class="badge" id="stt-badge">
+                <span class="badge-dot" id="stt-badge-dot"></span>
+                v1.0.0
+            </span>
             <span class="badge" id="mic-badge">
-                <span class="badge-dot" id="mic-badge-dot"></span>
+                <span class="badge-dot"></span>
                 Virtual Mic
             </span>
             <span class="badge" id="stt-badge">
@@ -36,23 +40,24 @@
             <!-- QR Code Card -->
             <div class="card qr-card">
                 <div class="card-header">
-                    <span class="card-icon">📱</span>
-                    <h2>Connect Phone</h2>
+                    <svg class="card-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+ <path stroke-linecap="round" stroke-linejoin="round" d="M8.288 15.038a5.25 5.25 0 0 1 7.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 0 1 1.06 0Z" />
+</svg>
+                    <h2 class="heading">Connect Phone</h2>
                 </div>
                 <div class="qr-wrapper">
                     <img src="/api/qr" alt="QR Code" id="qr-img" class="qr-img" />
                 </div>
-                <p class="qr-hint">Scan with your phone camera<br/>Both devices must be on same WiFi</p>
-                <div class="phone-url" id="phone-url"></div>
+                <p class="description">Scan with your phone camera<br />Both devices must be on same WiFi</p>
+                <div class="btn" id="phone-url"></div>
             </div>
 
             <!-- Audio Device Card -->
             <div class="card device-card">
                 <div class="card-header">
-                    <span class="card-icon">🔊</span>
-                    <h2>Audio Device</h2>
+                    <svg class="card-icon" viewBox="0 0 48 48" fill="currentColor"> <path d="M24,30a8,8,0,0,0,8-8V10a8,8,0,0,0-16,0V22A8,8,0,0,0,24,30ZM20,10a4,4,0,0,1,8,0V22a4,4,0,0,1-8,0Z"></path> <path d="M40,22V20a2,2,0,0,0-4,0v2a12,12,0,0,1-24,0V20a2,2,0,0,0-4,0v2A16.1,16.1,0,0,0,22,37.9V42H14a2,2,0,0,0,0,4H33a2,2,0,0,0,0-4H26V37.9A16.1,16.1,0,0,0,40,22Z"></path></svg><h2>Audio Device</h2>
                 </div>
-                <select id="device-select" class="device-select">
+                <select id="device-select" class="btn">
                     <option value="">Loading devices...</option>
                 </select>
                 <p class="device-hint" id="device-hint">
@@ -67,7 +72,9 @@
             <!-- Connection Status Card -->
             <div class="card status-card">
                 <div class="card-header">
-                    <span class="card-icon">📡</span>
+                    <svg class="card-icon" fill="currentColor" width="15px" height="15px" viewBox="0 0 256 256">
+  <path d="M176,156a43.80846,43.80846,0,0,0-29.09375,11.032l-40.81006-26.2351a43.9604,43.9604,0,0,0,0-25.59375L146.90625,88.968a43.88869,43.88869,0,1,0-13.00244-20.17188L93.09326,95.03149a44,44,0,1,0,0,65.937l40.81055,26.23535A43.99884,43.99884,0,1,0,176,156Zm0-120a20,20,0,1,1-20,20A20.02229,20.02229,0,0,1,176,36ZM64,148a20,20,0,1,1,20-20A20.02229,20.02229,0,0,1,64,148Zm112,72a20,20,0,1,1,20-20A20.02229,20.02229,0,0,1,176,220Z"/>
+</svg>
                     <h2>Connection</h2>
                 </div>
                 <div class="status-grid">
@@ -97,7 +104,7 @@
             <!-- Transcription Card -->
             <div class="card transcription-card">
                 <div class="card-header">
-                    <span class="card-icon">📝</span>
+                    <svg class="card-icon" viewBox="0 0 24 24" fill="none"><path d="M18 17a1 1 0 1 1 2 0v1.077c0 .76-.082 1.185-.319 1.627a2.363 2.363 0 0 1-.977.977c-.442.237-.867.319-1.627.319H5.923c-.76 0-1.185-.082-1.627-.319a2.363 2.363 0 0 1-.978-.977C3.082 19.262 3 18.838 3 18.077L2.999 6.5A2.5 2.5 0 0 1 5.502 4l1.5.005a1 1 0 1 1-.005 2L5.499 6a.5.5 0 0 0-.5.5v11.577c0 .459.023.57.083.684.038.07.087.12.157.157.113.06.225.082.684.082h11.154c.459 0 .57-.022.684-.082a.363.363 0 0 0 .157-.157c.06-.113.082-.225.082-.684V17zm4-4a1 1 0 1 1-2 0 9 9 0 0 0-9-9 1 1 0 1 1 0-2c6.075 0 11 4.925 11 11zm-4 0a1 1 0 1 1-2 0 5 5 0 0 0-5-5 1 1 0 1 1 0-2 7 7 0 0 1 7 7zm-4 0a1 1 0 1 1-2 0 1 1 0 0 0-1-1 1 1 0 1 1 0-2 3 3 0 0 1 3 3z" fill="currentColor"></path></svg>
                     <h2>Live Transcription</h2>
                     <div class="card-actions">
                         <button class="btn btn-sm" id="copy-btn" title="Copy all text">📋 Copy</button>
@@ -105,7 +112,8 @@
                     </div>
                 </div>
                 <div class="transcription-content" id="transcription">
-                    <p class="placeholder">Transcribed text will appear here when your phone is connected and streaming...</p>
+                    <p class="placeholder">Transcribed text will appear here when your phone is connected and
+                        streaming...</p>
                 </div>
             </div>
         </div>
@@ -116,4 +124,5 @@
 
     <script src="/ui/js/dashboard.js"></script>
 </body>
+
 </html>

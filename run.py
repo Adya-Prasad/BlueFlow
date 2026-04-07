@@ -64,20 +64,12 @@ def main():
 
     # Print banner
     print()
-    print("  ╔═══════════════════════════════════════════════════╗")
-    print("  ║                                                   ║")
-    print("  ║            🔵  B L U E F L O W                    ║")
-    print("  ║         Your phone is your microphone              ║")
-    print("  ║                                                   ║")
-    print("  ╠═══════════════════════════════════════════════════╣")
-    print(f"  ║  Dashboard:  https://localhost:{port}              ║")
+    print(f"  ║  Dashboard:  https://localhost:{port}             ║")
     print(f"  ║  Phone URL:  {phone_url:<37s} ║")
     print("  ║                                                   ║")
     print("  ║  Scan the QR code on the dashboard to connect     ║")
     print("  ║  your phone. Both devices must be on same WiFi.   ║")
-    print("  ║                                                   ║")
-    print("  ╚═══════════════════════════════════════════════════╝")
-    print()
+  
 
     # Open dashboard in browser after a short delay
     dashboard_url = f"https://localhost:{port}"
@@ -92,7 +84,6 @@ def main():
         ssl_certfile=cert_path,
         log_level="warning",
     )
-
 
 if __name__ == "__main__":
     main()

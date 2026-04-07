@@ -10,7 +10,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.11+-blue?style=flat-square&logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/platform-Windows-0078D6?style=flat-square&logo=windows" />
-  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" />
   <img src="https://img.shields.io/badge/cloud-none-critical?style=flat-square" />
 </p>
 
@@ -166,12 +165,6 @@ BlueFlow/
 | No sound in Zoom/Discord | Set mic to **"CABLE Output"** in the app's audio settings |
 | Phone can't reach PC | Both must be on the same WiFi network |
 | SSL warning on phone | Tap "Advanced" → "Proceed" — it's your own local server |
-
----
-
-## 📄 License
-
-MIT — free to use, modify, and distribute.
 
 ---
 
