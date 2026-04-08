@@ -13,25 +13,25 @@
     <!-- Header -->
     <div class="header">
         <div class="logo">
-            <img src="../assets/blueflow_logo.png" alt="BlueFlow Logo" class="logo-img">
+            <img src="/api/logo" alt="BlueFlow Logo" class="logo-img">
         </div>
-    </div>
-
-    <!-- Status -->
-    <div class="status-bar">
+        <div class="status-bar">
         <div class="status-dot disconnected" id="status-dot"></div>
         <span id="status-text">Connecting to PC...</span>
     </div>
+    </div>
+
+    <!-- Status -->
+    
 
     <!-- Mic Button -->
     <div class="mic-area">
         <div class="mic-ring">
-            <div id="ring-pulse"></div>
             <button class="mic-btn" id="mic-btn">
-                <span id="mic-icon">🎙</span>
+                <svg id="mic-icon" viewBox="0 0 48 48" fill="currentColor"> <path d="M24,30a8,8,0,0,0,8-8V10a8,8,0,0,0-16,0V22A8,8,0,0,0,24,30ZM20,10a4,4,0,0,1,8,0V22a4,4,0,0,1-8,0Z"></path> <path d="M40,22V20a2,2,0,0,0-4,0v2a12,12,0,0,1-24,0V20a2,2,0,0,0-4,0v2A16.1,16.1,0,0,0,22,37.9V42H14a2,2,0,0,0,0,4H33a2,2,0,0,0,0-4H26V37.9A16.1,16.1,0,0,0,40,22Z"></path></svg>
             </button>
         </div>
-        <p class="mic-hint" id="mic-hint">Tap to start speaking</p>
+        <p id="mic-hint">Tap to start speaking</p>
         <div class="level-meter">
             <div class="level-fill" id="level-fill"></div>
         </div>

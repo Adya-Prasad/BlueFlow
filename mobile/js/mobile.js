@@ -450,9 +450,9 @@ connectWebSocket();
 // Pre-check mic permission on load (to show UI hints)
 checkMicPermission().then((state) => {
     if (state === "denied") {
-        if (micHint) micHint.textContent = "⚠️ Mic blocked — tap for help";
+        if (micHint) micHint.textContent = "⚠︎ Mic blocked — tap for help";
         micBtn?.classList.add("warning");
     } else if (state === "unavailable") {
-        if (micHint) micHint.textContent = "⚠️ Mic not available";
+        if (micHint) micHint.textContent = "⚠︎ Mic not available";
     }
 });

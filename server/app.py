@@ -36,6 +36,7 @@ class AppState:
         self.audio_device_name: str | None = None
         self.audio_queue: queue.Queue = queue.Queue()
         self.worker_thread: threading.Thread | None = None
+        self.phone_websocket: WebSocket | None = None
         self.worker_running = False
         self.loop: asyncio.AbstractEventLoop | None = None
 
@@ -90,6 +91,11 @@ def audio_worker():
 
 async def broadcast_to_dashboard(message: dict):
     """Send a JSON message to all connected dashboard WebSocket clients."""
+    if state.phone_websocket:
+        try:
+            await state.phone_websocket.send_json(message)
+        except Exception:
+            pass
     if not state.dashboard_clients:
         return
     dead = set()
@@ -148,9 +154,11 @@ async def shutdown():
 # ---------------------------------------------------------------------------
 ui_dir = os.path.join(BASE_DIR, "ui")
 mobile_dir = os.path.join(BASE_DIR, "mobile")
+assets_dir = os.path.join(BASE_DIR, "assets")
 
 app.mount("/ui", StaticFiles(directory=ui_dir), name="ui")
 app.mount("/mobile", StaticFiles(directory=mobile_dir), name="mobile_static")
+app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
 
 
 @app.get("/")
@@ -171,6 +179,7 @@ async def audio_websocket(websocket: WebSocket):
     await websocket.accept()
     state.phone_connected = True
     state.phone_ip = websocket.client.host if websocket.client else "unknown"
+    state.phone_websocket = websocket
     state.is_streaming = True
     logger.info(f"Phone connected: {state.phone_ip}")
 
@@ -194,6 +203,7 @@ async def audio_websocket(websocket: WebSocket):
         logger.error(f"Audio WebSocket error: {e}")
     finally:
         state.phone_connected = False
+        state.phone_websocket = None
         state.is_streaming = False
         state.phone_ip = None
         await broadcast_to_dashboard({"type": "phone_disconnected"})
@@ -258,6 +268,14 @@ async def dashboard_websocket(websocket: WebSocket):
 # ---------------------------------------------------------------------------
 # REST API
 # ---------------------------------------------------------------------------
+@app.get("/api/logo")
+async def get_logo():
+    logo_path = os.path.join(assets_dir, "blueflow_logo.png")
+    if os.path.exists(logo_path):
+        return FileResponse(logo_path, media_type="image/png")
+    return JSONResponse({"error": "Logo not found"}, status_code=404)
+
+
 @app.get("/api/devices")
 async def get_devices():
     return JSONResponse(list_output_devices())
